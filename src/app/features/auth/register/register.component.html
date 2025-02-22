@@ -1,0 +1,132 @@
+<section class="bg-gradient-to-b from-gray-100 to-white">
+    <h1 class="w-3/4 mx-auto pt-6 text-2xl font-bold">Sign up:</h1>
+    <form class="w-[75%] mx-auto my-8" [formGroup]="registerForm" (ngSubmit)="RegisterSubmit()">
+        <div class="mb-3">
+            <label class="block mb-2 text-sm font-medium text-green-900 ">Name: </label>
+            
+            <div class="relative z-20">
+                <input (keyup)="validateInput('name')" type="text" formControlName="name" class="bg-gray-50 border border-gray-300 text-sm rounded-lg  block w-full p-2.5 dark:placeholder-gray-400"
+                [class]="{
+                    'focus:ring-green-500': !registerForm.get('name')?.errors,
+                    'focus:border-green-500': !registerForm.get('name')?.errors,
+                    'focus:ring-red-600': registerForm.get('name')?.errors,
+                    'focus:border-red-600': registerForm.get('name')?.errors
+                    }"
+                placeholder="Youssef" required />
+            </div>
+            <!-- Vaildate name:  -->
+            <div #validateName class="flex items-center relative z-0 h-0 opacity-0 text-red-700 bg-gradient-to-b from-transparent to-red-300 ps-5 rounded-b-lg transition-all duration-[1.2s]">
+                <div class="flex items-center">
+                    <div class="w-[15px] h-[15px] rounded-full border-2 border-red-700  me-2 flex justify-center items-center text-xs">!</div>
+                    Please fill this field correctly with minimum length of 3 characters and maximum length of 20 characters
+                </div>
+            </div>
+            
+        </div>
+        <div class="mb-3">
+            <label class="block mb-2 text-sm font-medium text-green-900 ">Email: </label>
+            
+            <div class="relative z-20">
+                <input (keyup)="validateInput('email')" type="email" formControlName="email" class="bg-gray-50 border border-gray-300 text-sm rounded-lg  block w-full p-2.5 dark:placeholder-gray-400"
+                [class]="{
+                    'focus:ring-green-500': !registerForm.get('email')?.errors,
+                    'focus:border-green-500': !registerForm.get('email')?.errors,
+                    'focus:ring-red-600': registerForm.get('email')?.errors,
+                    'focus:border-red-600': registerForm.get('email')?.errors
+                    }"placeholder="youssef@gmail.com" required />
+            </div>
+            <!-- Vaildate email:  -->
+            <div #validateEmail class="flex items-center relative z-0 h-0 opacity-0 text-red-700 bg-gradient-to-b from-transparent to-red-300 ps-5 rounded-b-lg transition-all duration-[1.2s]">
+                <div class="flex items-center">
+                    <div class="w-[15px] h-[15px] rounded-full border-2 border-red-700  me-2 flex justify-center items-center text-xs">!</div>
+                    This is invalid mail
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="block mb-2 text-sm font-medium text-green-900 ">Password: </label>
+            
+            <div class="relative z-20">
+                <input (keyup)="validateInput('password');validateInput('rePassword')" [type]="showPassword? 'text':'password'" formControlName="password" class="bg-gray-50 border border-gray-300 text-sm rounded-lg  block w-full p-2.5 dark:placeholder-gray-400"
+            [class]="{
+                'focus:ring-green-500': !registerForm.get('password')?.errors,
+                'focus:border-green-500': !registerForm.get('password')?.errors,
+                'focus:ring-red-600': registerForm.get('password')?.errors,
+                'focus:border-red-600': registerForm.get('password')?.errors
+                }" placeholder="Y123456" required />
+    
+                <input class="absolute top-1/2 -translate-y-1/2 right-0 -translate-x-full cursor-pointer"
+                [class]="{
+                    'text-green-500': (!registerForm.get('password')?.errors),
+                    'focus:ring-green-500': (!registerForm.get('password')?.errors),
+                    'text-red-600': (registerForm.get('password')?.errors),
+                    'focus:ring-red-600': (registerForm.get('password')?.errors )
+                    }" type="checkbox" (click)="showHidePassword($event)">
+            </div>
+            
+            <!-- Vaildate pass:  -->
+            <div #validatePass class="flex items-center relative z-0 h-0 opacity-0 text-red-700 bg-gradient-to-b from-transparent to-red-300 ps-5 rounded-b-lg transition-all duration-[1.2s]">
+                <div class="flex items-center">
+                    <div class="w-[15px] h-[15px] rounded-full border-2 border-red-700  me-2 flex justify-center items-center text-xs">!</div>
+                    Please enter the password with the first letter to be capital followed by 6-10 letters or numbers
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="block mb-2 text-sm font-medium text-green-900 ">RePassword: </label>
+            
+            <div class="relative z-20">
+                <input (keyup)="validateInput('rePassword')" [type]="showRepassword? 'text':'password'" formControlName="rePassword" class="bg-gray-50 border border-gray-300 text-sm rounded-lg  block w-full p-2.5 dark:placeholder-gray-400"
+                [class]="{
+                    'focus:ring-green-500': (!registerForm.get('rePassword')?.errors && rePasswordExtraValidation),
+                    'focus:border-green-500': (!registerForm.get('rePassword')?.errors && rePasswordExtraValidation),
+                    'focus:ring-red-600': (registerForm.get('rePassword')?.errors || !rePasswordExtraValidation),
+                    'focus:border-red-600': (registerForm.get('rePassword')?.errors || !rePasswordExtraValidation)
+                    }" placeholder="Y123456" required />
+    
+                <input class="absolute top-1/2 -translate-y-1/2 right-0 -translate-x-full cursor-pointer"
+                [class]="{
+                    'text-green-600' : (!registerForm.get('rePassword')?.errors && rePasswordExtraValidation),
+                    'focus:ring-green-600' : (!registerForm.get('rePassword')?.errors && rePasswordExtraValidation),
+                    'text-red-600' : (registerForm.get('rePassword')?.errors || !rePasswordExtraValidation),
+                    'focus:ring-red-600' : (registerForm.get('rePassword')?.errors || !rePasswordExtraValidation)
+                    
+                }" type="checkbox" (click)="showHideRepassword($event)">
+            </div>
+            
+            <!-- Vaildate repass:  -->
+            <div #validateRepass class="flex items-center relative z-0 h-0 opacity-0 text-red-700 bg-gradient-to-b from-transparent to-red-300 ps-5 rounded-b-lg transition-all duration-[1.2s]">
+                <div class="flex items-center">
+                    <div class="w-[15px] h-[15px] rounded-full border-2 border-red-700  me-2 flex justify-center items-center text-xs">!</div>
+                    Please enter the password correctly
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="block mb-2 text-sm font-medium text-green-900 ">Phone: </label>
+            
+            <div class="relative z-20">
+                <input (keyup)="validateInput('phone')" type="tel" formControlName="phone" class="bg-gray-50 border border-gray-300 text-sm rounded-lg  block w-full p-2.5 dark:placeholder-gray-400"
+                [class]="{
+                    'focus:ring-green-500': !registerForm.get('phone')?.errors,
+                    'focus:border-green-500': !registerForm.get('phone')?.errors,
+                    'focus:ring-red-600': registerForm.get('phone')?.errors,
+                    'focus:border-red-600': registerForm.get('phone')?.errors
+                    }" placeholder="01122222222" required />
+            </div>
+            <!-- Vaildate phone:  -->
+            <div #validatePhone class="flex items-center relative z-0 h-0 opacity-0 text-red-700 bg-gradient-to-b from-transparent to-red-300 ps-5 rounded-b-lg transition-all duration-[1.2s]">
+                <div class="flex items-center">
+                    <div class="w-[15px] h-[15px] rounded-full border-2 border-red-700  me-2 flex justify-center items-center text-xs">!</div>
+                    Please enter a valid phone
+                </div>
+            </div>
+        </div>
+    
+        <button [disabled]="(registerForm.invalid || !rePasswordExtraValidation)" type="submit" class="disabled:cursor-not-allowed p-4 bg-green-600 hover:bg-green-500 rounded-full text-white disabled:bg-gray-500 disabled:hover:bg-gray-500">Register
+            @if (isLoading) {
+                <i class="fa-solid fa-spinner fa-spin"></i>
+            }
+        </button>
+    </form>
+</section>

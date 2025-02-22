@@ -1,0 +1,62 @@
+<div class="w-[95%] mx-auto">
+    <div class="flex h-1/4">
+        <div class="w-1/2 md:w-3/4">
+            <owl-carousel-o [options]="customOptions2">
+                @for (source of imgSources; track $index) {
+                    <ng-template carouselSlide>
+                        <img [src]="source" class="w-full h-auto">
+                    </ng-template>
+                }
+            </owl-carousel-o>
+        </div>
+        <div class="w-1/2 md:w-1/4 flex flex-wrap pb-[34px]">
+            <div class=" h-1/2">
+                <img class="h-full" src="/images/slider-2.jpeg" alt="product banner">
+            </div>
+            <div class=" h-1/2">
+                <img class="h-full" src="/images/grocery-banner-2.jpeg" alt="product banner">
+            </div>
+        </div>
+    </div>
+    <div class="p-3 shadow-md border border-gray-50 rounded-lg bg-gradient-to-b from-green-50 to-white">
+        <h1 class="text-2xl text-green-600 text-center font-bold">Our brands</h1>
+        <owl-carousel-o [options]="customOptions">
+            @for (brand of brands; track $index) {
+                <ng-template carouselSlide>
+                    <div class="p-3">
+                        <img [src]="brand.image" class="w-full h-auto">
+                    </div>
+                </ng-template>
+            }
+        </owl-carousel-o>
+    </div>
+    <div class="flex justify-between mt-8 translate-y-[5px]">
+        <div class="flex-grow flex justify-center">
+            <div class="w-fit p-2 px-5 flex flex-col justify-center items-center rounded-md shadow-top-left-right-md bg-green-50">
+                <label for="searchProduct" class="text-green-600">Search</label>
+                <input id="searchProduct" class="h-8 rounded-md hover:bg-gray-50 focus:ring-2 focus:ring-green-200 focus:border-green-500" [(ngModel)]="searchVal" type="text"/>
+            </div>
+        </div>
+        <div class="p-2 border border-gray-100 border-b-0 shadow-top-left-right-md rounded-tl-md rounded-tr-md bg-green-50">
+            <h1 class="text-center mb-1 text-green-600">pages: {{numberOfPages}}</h1>
+            <div class="flex items-center">
+                <button (click)="decrement()" class="inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div>
+                    <div type="number" class="flex justify-center bg-gray-50 w-6 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 px-2.5 py-1" >{{page}}</div>
+                </div>
+                <button (click)="increment();" class="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="mb-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-col-5  border border-gray-100 rounded-bl-md rounded-br-md shadow-md bg-gradient-to-b from-green-50 to-white">
+        @for (product of products | search : searchVal; track $index) {
+            <div>
+                <app-product [product]="product"></app-product>
+            </div>
+         }
+    </div>
+</div>
