@@ -1,4 +1,4 @@
 export let Env = {
     baseURL : `https://ecommerce.routemisr.com` ,
-    successURL : ``
+    successURL : `https://angular-ecommerce-iqxq.vercel.app`
 }
