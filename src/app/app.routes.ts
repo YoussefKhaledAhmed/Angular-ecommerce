@@ -1,3 +1,4 @@
+import { RenderMode } from '@angular/ssr';
 import { Routes } from '@angular/router';
 import { HomeComponent } from './features/pages/home/home.component';
 import { CartComponent } from './features/pages/cart/cart.component';
@@ -24,7 +25,7 @@ export const routes: Routes = [
     {path:"brands", component:BrandsComponent , title: 'brands' , canActivate: [authenticationGuard]},
     {path:"categories", component:CategoriesComponent , title: 'categories' , canActivate: [authenticationGuard]},
     {path:"products", component:ProductsComponent , title: 'products' , canActivate: [authenticationGuard]},
-    {path:"productDetails/:productId", component:ProductDetailsComponent , title: 'product details' , canActivate: [authenticationGuard]},
+    {path:"productDetails/:productId" , component:ProductDetailsComponent , title: 'product details' , canActivate: [authenticationGuard]},
     {path:"allorders", component:AllOrdersComponent , title: 'orders' , canActivate: [authenticationGuard]},
     {path:"orderdetails", component:OrderDetailsComponent , title: 'order details' , canActivate: [authenticationGuard]},
     {path:"address/:cartId", component:AddressComponent , title: 'shipping address' , canActivate: [authenticationGuard]},
